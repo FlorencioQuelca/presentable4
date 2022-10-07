@@ -5,16 +5,16 @@ const UserCard = ({user,deleteUserById,setUpdateInfo}) => {
   const handleEdit =() =>{
     setUpdateInfo(user)
   }
-  return (
-    <article>
-      <h2>{`${user.first_name} ${user.last_name}`}</h2>
-            <ul>
-                <li><span>Email : </span>{user.email}</li>
-                <li><span>Birthday : </span>{user.birthday}</li>
+  return ( 
+    <article className='user'>
+      <h2 className='user__name'>{`${user.first_name} ${user.last_name}`}</h2>
+            <ul className='user__list'>
+                <li className='user__item'><span className='user__span'>Email : </span>{user.email}</li>
+                <li className='user__item'><span className='user__span'>Birthday : </span>{user.birthday}</li>
             </ul>
-            <footer>
-               <button  onClick={handleEdit} >Edit</button>
-               <button onClick={()=> deleteUserById(user.id)}>Delete</button>
+            <footer className='user__footer'>
+               <button className='user__btn' onClick={handleEdit} >Edit</button>
+               <button className='user__btn' onClick={()=> deleteUserById(user.id)}>Delete</button>
             </footer>
     </article>
   )
