@@ -6,8 +6,22 @@ import axios from 'axios'
 import UserCard from './components/UserCard'
 
 function App() {
+//update: para pasar info desde usercard hasta formUser
+const BASEURL ='https://users-crud1.herokuapp.com'
+  const [updateInfo, setUpdateInfo] =useState()
+
+//console.log(updateInfo)
+
+const updateUserById = (id,data) =>{
+  const URL = `${BASEURL}/users/${id}/`
+  axios.patch(URL,data)
+  .then(res =>{console.log(res.date)
+  getUsers() 
+  })
+  .catch(e => console.log('error',e))
+}
+
   const [users, setUsers] = useState()
-  const BASEURL ='https://users-crud1.herokuapp.com'
   const getUsers = () =>{
     const URL = `${BASEURL}/users/`
     axios.get(URL)
@@ -42,13 +56,19 @@ function App() {
   return (
     <div className="App">
       <h1>Crud USERS</h1>
-      <FormUsers createNewUser={createNewUser}/>
+      <FormUsers 
+         createNewUser={createNewUser}
+         updateInfo={updateInfo}
+         updateUserById={updateUserById}
+         setUpdateInfo={setUpdateInfo}
+      />
       {
         users?.map(user =>(
-          <UserCard 
+      <UserCard 
             key={user.id}
             user={user}
             deleteUserById={deleteUserById}
+            setUpdateInfo={setUpdateInfo}
           />
         ))
       }
