@@ -11,7 +11,13 @@
     font-weight: 500px;
     padding-bottom: 10px;
     margin-bottom: 10px;
-    border-bottom: 1px solid #ccc9;
+}
+
+.user__list {
+    display: grid;
+    gap: 12px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .user__item {
@@ -25,18 +31,31 @@
     color: #aaa;
     font-weight: 400;
     text-transform: uppercase;
-    margin-bottom: ;
 }
 
-.user__list {
-    display: grid;
-    gap: 12px;
+.user__item-container {
+    display: flex;
+    gap: 8px;
 }
 
 .user__btn {
-    background-color: #D85D5D;
-    color: white;
     width: 35px;
     aspect-ratio: 1;
     border-radius: 5px;
+}
+
+.user__btn:first-child {
+    color: white;
+    background-color: #D85D5D;
+}
+
+.user__btn:last-child {
+    color: black;
+    border: 1px solid #ccc9;
+}
+
+.user__footer {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
 }

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 import FormUsers from './components/FormUsers'
 import axios from 'axios'
 import UserCard from './components/UserCard'
+import'./styles/userCard.css'
 
 function App() {
 //update: para pasar info desde usercard hasta formUser
@@ -22,7 +22,6 @@ const updateUserById = (id,data) =>{
 }
 
   const [users, setUsers] = useState()
-  const [formIsClose, setFormIsClose] = useState(true)
   const getUsers = () =>{
     const URL = `${BASEURL}/users/`
     axios.get(URL)
@@ -31,30 +30,31 @@ const updateUserById = (id,data) =>{
   }
    useEffect(() => {
      getUsers()
-   }, [])
-  const createNewUser = data=>{
-    const URL = `${BASEURL}/users/`
-    axios.post(URL,data)
-    .then(res =>{
-      console.log(res.data)
-       getUsers() 
-    })
-    .catch(e => console.log(e))
-   }
+    }, [])
+    const createNewUser = data=>{
+      const URL = `${BASEURL}/users/`
+      axios.post(URL,data)
+      .then(res =>{
+        console.log(res.data)
+        getUsers() 
+      })
+      .catch(e => console.log(e))
+    }
+    
+    const deleteUserById =(id) =>{
+      const URL = `${BASEURL}/users/${id}/`
+      axios.delete(URL,id)
+      .then(res =>{
+        console.log(res.data)
+        getUsers() 
+      })
+      .catch(e => console.log(e))
+      
+    }
 
-   const deleteUserById =(id) =>{
-    const URL = `${BASEURL}/users/${id}/`
-    axios.delete(URL,id)
-    .then(res =>{
-      console.log(res.data)
-       getUsers() 
-    })
-    .catch(e => console.log(e))
-  
-   }
+    const [formIsClose, setFormIsClose] = useState(true)
    const handleOpenForm = () =>{
     setFormIsClose(false)
-    setFormIsClose()
   }
   
   return (
@@ -63,7 +63,7 @@ const updateUserById = (id,data) =>{
       <h1 className='App__title'>Crud USERS</h1>
       <button onClick={handleOpenForm} className='App__btn'> New User </button>
       </div>
-      <div className={`form__container ${'formIsClose' && 'dissable__form'}`} >
+      <div className={`'form__container' ${'formIsClose' && 'dissable__form'}`} >
       <FormUsers 
          createNewUser={createNewUser}
          updateInfo={updateInfo}
@@ -71,8 +71,8 @@ const updateUserById = (id,data) =>{
          setUpdateInfo={setUpdateInfo}
          setFormIsClose={setFormIsClose}
       />
-
       </div>
+      <div className='users__containers'>
       {
         users?.map(user =>(
       <UserCard 
@@ -84,6 +84,7 @@ const updateUserById = (id,data) =>{
           />
         ))
       }
+      </div>
     </div>
   )
 }
