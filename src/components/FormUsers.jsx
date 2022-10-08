@@ -16,6 +16,8 @@ const FormUsers = ({createNewUser,updateInfo,updateUserById,setUpdateInfo,setFor
   useEffect (()=>{  //evitar ciclos infonitos
     if(updateInfo){ 
       reset(updateInfo)
+    }else{
+      reset(defaultValues)
     }
   },[updateInfo])
 

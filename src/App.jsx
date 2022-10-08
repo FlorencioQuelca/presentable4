@@ -54,6 +54,7 @@ const updateUserById = (id,data) =>{
    }
    const handleOpenForm = () =>{
     setFormIsClose(false)
+    setFormIsClose()
   }
   
   return (
