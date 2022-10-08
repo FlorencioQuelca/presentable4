@@ -60,10 +60,10 @@ const updateUserById = (id,data) =>{
   return (
     <div className="App">
       <div className="App__container-title">
-      <h1 className='App__title'>Crud USERS</h1>
-      <button onClick={handleOpenForm} className='App__btn'> New User </button>
+          <h1 className='App__title'>Crud USERS</h1>
+          <button onClick={handleOpenForm} className='App__btn'> Create a New User </button>
       </div>
-      <div className={`'form__container' ${'formIsClose' && 'dissable__form'}`} >
+      <div className={`form-container ${formIsClose && 'form__dissable'}`} >
       <FormUsers 
          createNewUser={createNewUser}
          updateInfo={updateInfo}

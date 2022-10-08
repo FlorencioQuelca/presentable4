@@ -39,7 +39,7 @@ const submit =(data) =>{
  }
   return (
     <form  className='form' onSubmit={handleSubmit(submit)}>
-          <button  onClick={handleCloseForm} className='form__x'>X</button>
+          <i onClick={handleCloseForm} className="form__x fa-solid fa-xmark"></i>
         <h2  className='form__title'> {updateInfo ? 'Edit User':'New User'}</h2>
         <div className='form__div'>
             <label className='form__label' htmlFor='email'>Email</label>
