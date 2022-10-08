@@ -22,6 +22,7 @@ const updateUserById = (id,data) =>{
 }
 
   const [users, setUsers] = useState()
+  const [formIsClose, setFormIsClose] = useState(true)
   const getUsers = () =>{
     const URL = `${BASEURL}/users/`
     axios.get(URL)
@@ -49,19 +50,28 @@ const updateUserById = (id,data) =>{
        getUsers() 
     })
     .catch(e => console.log(e))
-      
+  
    }
-
+   const handleOpenForm = () =>{
+    setFormIsClose(false)
+  }
   
   return (
     <div className="App">
-      <h1>Crud USERS</h1>
+      <div className="App__container-title">
+      <h1 className='App__title'>Crud USERS</h1>
+      <button onClick={handleOpenForm} className='App__btn'> New User </button>
+      </div>
+      <div className={`form__container ${'formIsClose' && 'dissable__form'}`} >
       <FormUsers 
          createNewUser={createNewUser}
          updateInfo={updateInfo}
          updateUserById={updateUserById}
          setUpdateInfo={setUpdateInfo}
+         setFormIsClose={setFormIsClose}
       />
+
+      </div>
       {
         users?.map(user =>(
       <UserCard 
@@ -69,6 +79,7 @@ const updateUserById = (id,data) =>{
             user={user}
             deleteUserById={deleteUserById}
             setUpdateInfo={setUpdateInfo}
+            setFormIsClose={setFormIsClose}
           />
         ))
       }

@@ -1,0 +1,107 @@
+.form__container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #0003;
+    backdrop-filter: blur(2px);
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    z-index: 1;
+}
+
+.form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #0004;
+    position: relative;
+    width: 100%;
+    max-width: 270px;
+}
+
+.form__x {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    font-size: 20px;
+    color: red;
+    cursor: pointer;
+    transition: transform 100ms ease;
+}
+
+.form__x:hover {
+    transform: scale(1.2);
+    transition: transform 100ms ease;
+}
+
+.form__title {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.form__div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form__label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #000a;
+}
+
+.form__input {
+    font-family: inherit;
+    padding: 6px 15px;
+    background-color: #F9FAFC;
+    border: 1px solid #ccc9;
+    border-radius: 5px;
+    font-weight: 200;
+}
+
+.form__input::placeholder {
+    color: rgb(70, 79, 160);
+}
+
+.form__btn {
+    width: 100%;
+    padding: 8px;
+    background-color: rgba(55, 61, 170, 0.6);
+    color: white;
+    border-radius: 4px;
+    border-top: 20px;
+    cursor: pointer;
+    transform: filter 100ms esae;
+}
+
+.form__btn:hover {
+    filter: brightness(1.2);
+    transform: filter 100ms esae;
+}
+
+.desable__form {
+    display: none;
+}
+
+.App__btn {
+    width: 100%;
+    max-width: 200px;
+    padding: 10px;
+    background-color: #555ABB;
+    color: white;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: transform 150ms ease;
+}
+
+.App__btn:hover {
+    box-shadow: 0 0;
+    transition: transform 150ms ease;
+}
