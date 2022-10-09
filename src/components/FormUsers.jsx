@@ -35,6 +35,9 @@ const submit =(data) =>{
   setFormIsClose(true)
 }
  const handleCloseForm = () =>{
+  if(updateInfo){
+    reset(defaultValues)
+  }
   setFormIsClose(true)
  }
   return (

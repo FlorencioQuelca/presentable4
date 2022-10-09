@@ -4,6 +4,8 @@ import FormUsers from './components/FormUsers'
 import axios from 'axios'
 import UserCard from './components/UserCard'
 import'./styles/userCard.css'
+import './styles/modalDelete.css'
+import ModalDelete from './components/ModalDelete'
 
 function App() {
 //update: para pasar info desde usercard hasta formUser
@@ -33,6 +35,8 @@ const updateUserById = (id,data) =>{
     }, [])
     const createNewUser = data=>{
       const URL = `${BASEURL}/users/`
+      data.first_name =data.first_name.toUpperCase()
+      data.last_name =data.last_name.toUpperCase()
       axios.post(URL,data)
       .then(res =>{
         console.log(res.data)
@@ -42,25 +46,31 @@ const updateUserById = (id,data) =>{
     }
     
     const deleteUserById =(id) =>{
-      const URL = `${BASEURL}/users/${id}/`
-      axios.delete(URL,id)
-      .then(res =>{
-        console.log(res.data)
-        getUsers() 
-      })
-      .catch(e => console.log(e))
-      
+        const URL = `${BASEURL}/users/${id}/`
+        axios.delete(URL,id)
+        .then(res =>{
+          //   console.log(res.data)
+          setDeleteIsClose(true)
+          getUsers() 
+        })
+        .catch(
+          e => {console.log('Error delete',e)
+        
+          })
+    }
+   
+    const [formIsClose, setFormIsClose] = useState(true)
+    const [deleteIsClose, setDeleteIsClose] = useState(true)
+    const [idForDelete, setIdForDelete] = useState()
+    const [yesNo, setYesNo] = useState(true)
+    const handleOpenForm = () =>{
+    setFormIsClose(false)
     }
 
-    const [formIsClose, setFormIsClose] = useState(true)
-   const handleOpenForm = () =>{
-    setFormIsClose(false)
-  }
-  
   return (
     <div className="App">
       <div className="App__container-title">
-          <h1 className='App__title'>Crud USERS</h1>
+          <h1 className='App__title'>USERS</h1>
           <button onClick={handleOpenForm} className='App__btn'> Create a New User </button>
       </div>
       <div className={`form-container ${formIsClose && 'form__dissable'}`} >
@@ -70,17 +80,27 @@ const updateUserById = (id,data) =>{
          updateUserById={updateUserById}
          setUpdateInfo={setUpdateInfo}
          setFormIsClose={setFormIsClose}
-      />
+         />
+      </div>
+      <div className={`delete-container ${deleteIsClose && 'delete__dissable'}`}>
+          <ModalDelete
+          user={idForDelete}
+          deleteUserById={deleteUserById}
+          setDeleteIsClose={setDeleteIsClose}
+          />
       </div>
       <div className='users__containers'>
       {
         users?.map(user =>(
-      <UserCard 
-            key={user.id}
-            user={user}
-            deleteUserById={deleteUserById}
-            setUpdateInfo={setUpdateInfo}
-            setFormIsClose={setFormIsClose}
+          <UserCard 
+          key={user.id}
+          user={user}
+          setIdForDelete ={setIdForDelete}
+       //   deleteUserById={deleteUserById}
+          setUpdateInfo={setUpdateInfo}
+          setFormIsClose={setFormIsClose}
+          setDeleteIsClose={setDeleteIsClose}
+          
           />
         ))
       }

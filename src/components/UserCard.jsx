@@ -1,10 +1,15 @@
 import React from 'react'
 
-const UserCard = ({user,deleteUserById,setUpdateInfo, setFormIsClose}) => {
+const UserCard = ({user,setIdForDelete,setUpdateInfo, setFormIsClose,setDeleteIsClose}) => {
 
   const handleEdit =() =>{
     setUpdateInfo(user)
     setFormIsClose(false)
+  }
+  const handleDelete = ()=>{
+    setDeleteIsClose(false)
+    setIdForDelete(user)
+   // deleteUserById(user.id)
   }
   return ( 
     <article className='user'>
@@ -19,7 +24,8 @@ const UserCard = ({user,deleteUserById,setUpdateInfo, setFormIsClose}) => {
                 </li>
             </ul>
             <footer className='user__footer'>
-               <button className='user__btn' onClick={()=> deleteUserById(user.id)}>
+            
+               <button className='user__btn' onClick={handleDelete}>
                <i className="user__trash fa-solid fa-trash-can"></i>
                </button>
                <button className='user__btn' onClick={handleEdit} >
